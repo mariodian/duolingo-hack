@@ -90,7 +90,8 @@ try {
 					juicy: true,
 					learningLanguage,
 					smartTipsVersion: 2,
-					type: "GLOBAL_PRACTICE",
+					skillId: "e35a962390273eaf4cfad80718d0398a",
+  					type: "LISTENING_PRACTICE"
 				}),
 				headers,
 				method: "POST",
@@ -101,15 +102,16 @@ try {
 			`https://www.duolingo.com/2017-06-30/sessions/${session.id}`,
 			{
 				body: JSON.stringify({
-					...session,
-					heartsLeft: 0,
-					startTime: (+new Date() - 60000) / 1000,
-					enableBonusPoints: false,
-					endTime: +new Date() / 1000,
-					failed: false,
-					maxInLessonStreak: 9,
-					shouldLearnThings: true,
-				}),
+          ...session,
+          heartsLeft: 0,
+          startTime: (+new Date() - 60000) / 1000,
+          enableBonusPoints: true,
+          endTime: +new Date() / 1000,
+          failed: false,
+          maxInLessonStreak: Math.round(Math.random() * (10 - 9) + 9), // Random number between 9 and 10
+          shouldLearnThings: true,
+          hasBoost: true
+        }),
 				headers,
 				method: "PUT",
 			},
